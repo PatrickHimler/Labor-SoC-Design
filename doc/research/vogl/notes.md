@@ -36,6 +36,14 @@ Nearly same as above
 
 ## A Design-Time Method for Building Cost-Effective Run-Time Power Monitoring
 
-(NEED TO ACCESS!)
-
 * Website: https://ieeexplore.ieee.org/document/7579225
+
+"Our approach is based on a generic flow that is able to produce a power model for any register transfer level (RTL) circuit on any technology."
+
+Monitoring done in 2 ways:
+* Analog sensors -> not scalable + HW support required
+* Models with activity measurements
+
+Uses information from  "strategic signals from the interface"
+
+Event counters + database for each model of IP -> complex to get parameters out of the IP!
