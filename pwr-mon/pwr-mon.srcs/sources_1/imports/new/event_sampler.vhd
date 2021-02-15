@@ -37,26 +37,44 @@ use ieee.numeric_std.all;
 entity event_sampler is
     Port ( clk : in STD_LOGIC;
            nrst: in STD_LOGIC;
+           strobe: in STD_LOGIC;
            ev_in: in STD_LOGIC_VECTOR((2*1)-1 downto 0); -- Adjust width here!
            cnt_out : out STD_LOGIC_VECTOR((2*8)-1 downto 0)); -- Adjust width here!
 end event_sampler;
 
 architecture event_sampler_beh of event_sampler is
-    signal s_ctim : integer;
-    
+    signal s_cnt_out : std_logic_vector((2*8)-1 downto 0); -- Adjust width here!
+    signal s_nrst : std_logic;
+        
     component sampler
     Port ( clk : in STD_LOGIC;
            nrst : in STD_LOGIC;
            ev : in STD_LOGIC;
-           cnt_out : out STD_LOGIC_VECTOR(8 downto 0));
+           cnt_out : out STD_LOGIC_VECTOR(7 downto 0));
     end component;
     
 begin
 
+    a: process (clk)
+    begin
+        if (clk'event and clk = '1') then    
+            if (nrst = '0') then
+               cnt_out <= (others => '0');
+               s_nrst <= '0';
+            elsif (strobe = '1') then
+                cnt_out <= s_cnt_out; -- buffer s_cnt_out
+                s_nrst <= '0'; -- reset counters
+            else
+                s_nrst <= '1';
+                -- No cnt_out here! -> buffered
+            end if;
+        end if;
+    end process;
+
    GEN_REG: 
    for I in 0 to 1 generate -- Adjust here also!
       sampler_i : sampler port map
-        (clk, nrst, ev_in(I), cnt_out(((I+1)*8)-1 downto I*8));
+        (clk, s_nrst, ev_in(I), s_cnt_out(((I+1)*8)-1 downto I*8));
    end generate GEN_REG;
 
 end event_sampler_beh;

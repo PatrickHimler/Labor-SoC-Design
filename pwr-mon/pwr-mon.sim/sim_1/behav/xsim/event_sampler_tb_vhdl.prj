@@ -1,0 +1,8 @@
+# compile vhdl design source files
+vhdl xil_defaultlib  \
+"../../../../pwr-mon.srcs/sources_1/imports/new/event_sampler.vhd" \
+"../../../../pwr-mon.srcs/sources_1/imports/new/sampler.vhd" \
+"../../../../pwr-mon.srcs/sim_1/imports/new/event_sampler_tb.vhd" \
+
+# Do not sort compile order
+nosort

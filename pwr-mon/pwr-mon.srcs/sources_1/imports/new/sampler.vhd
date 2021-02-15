@@ -36,7 +36,7 @@ entity sampler is
     Port ( clk : in STD_LOGIC;
            nrst : in STD_LOGIC;
            ev : in STD_LOGIC;
-           cnt_out : out STD_LOGIC_VECTOR(8 downto 0));
+           cnt_out : out STD_LOGIC_VECTOR(7 downto 0));
 end sampler;
 
 architecture sampler_beh of sampler is
