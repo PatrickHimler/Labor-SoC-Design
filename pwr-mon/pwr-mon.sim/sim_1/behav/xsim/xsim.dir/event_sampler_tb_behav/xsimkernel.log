@@ -2,3 +2,6 @@ Running: xsim.dir/event_sampler_tb_behav/xsimk.exe -simmode gui -wdb event_sampl
 Design successfully loaded
 Design Loading Memory Usage: 6348 KB (Peak: 6348 KB)
 Design Loading CPU Usage: 0 ms
+Simulation completed
+Simulation Memory Usage: 7040 KB (Peak: 7040 KB)
+Simulation CPU Usage: 31 ms
