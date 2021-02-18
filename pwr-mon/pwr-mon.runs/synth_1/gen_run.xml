@@ -45,8 +45,8 @@
     <Step Id="synth_design"/>
   </Strategy>
   <BlockFileSet Type="BlockSrcs" Name="system_processing_system7_0_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="system_auto_pc_0"/>
   <BlockFileSet Type="BlockSrcs" Name="system_xbar_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_auto_pc_0"/>
   <BlockFileSet Type="BlockSrcs" Name="system_axi_gpio_0_1"/>
   <BlockFileSet Type="BlockSrcs" Name="system_rst_ps7_0_100M_0"/>
   <BlockFileSet Type="BlockSrcs" Name="system_axi_gpio_1_1"/>

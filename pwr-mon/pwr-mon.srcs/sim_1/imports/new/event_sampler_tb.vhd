@@ -41,14 +41,14 @@ architecture Behavioral of event_sampler_tb is
     signal s_nrst: STD_LOGIC;
     signal s_strobe: STD_LOGIC;
     signal s_ev_in: std_logic_vector((2*1)-1 downto 0);
-    signal s_cnt_out: std_logic_vector((2*8)-1 downto 0);
+    signal s_cnt_out: std_logic_vector((2*32)-1 downto 0);
     
     component event_sampler
     Port ( clk : in STD_LOGIC;
            nrst: in STD_LOGIC;
            strobe: in STD_LOGIC;
            ev_in: in STD_LOGIC_VECTOR((2*1)-1 downto 0); -- Adjust width here!
-           cnt_out : out STD_LOGIC_VECTOR((2*8)-1 downto 0)); -- Adjust width here!
+           cnt_out : out STD_LOGIC_VECTOR((2*32)-1 downto 0)); -- Adjust width here!
     end component;
 begin
 
@@ -69,20 +69,24 @@ begin
     s_ev_in(0) <= '0';
     s_ev_in(1) <= '0';
     s_strobe <= '0';
-    assert to_integer(unsigned(s_cnt_out)) = 0;
     wait for 5 ns;
     
     s_ev_in(0) <= '1';
-    assert to_integer(unsigned(s_cnt_out)) = 0;
     wait for 1 ns;
     s_ev_in(0) <= '0';
-    assert to_integer(unsigned(s_cnt_out)) = 0;
     
     wait for 10 ns;
     s_strobe <= '1';
     wait for 1 ns;
-    assert to_integer(unsigned(s_cnt_out)) = 1;
     s_strobe <= '0';
+    
+    wait for 10 ns;
+    s_ev_in(0) <= '1';
+    wait for 1 ns;
+    s_strobe <= '1';
+    wait for 1 ns;
+    s_strobe <= '0';
+    s_ev_in(0) <= '0';
     
     wait;
     

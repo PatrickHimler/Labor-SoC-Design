@@ -2,9 +2,9 @@
 -- Company: 
 -- Engineer: 
 -- 
--- Create Date: 30.01.2021 00:06:21
+-- Create Date: 15.02.2021 19:02:32
 -- Design Name: 
--- Module Name: ticker - Behavioral
+-- Module Name: pwr_mon - Behavioral
 -- Project Name: 
 -- Target Devices: 
 -- Tool Versions: 
@@ -21,7 +21,6 @@
 
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
-use ieee.numeric_std.all;
 
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
@@ -32,16 +31,14 @@ use ieee.numeric_std.all;
 --library UNISIM;
 --use UNISIM.VComponents.all;
 
-entity bram is
+entity pwr_mon is
     Port ( clk : in STD_LOGIC;
            nrst: in STD_LOGIC;
-           addr_in: in std_logic_vector(7 downto 0);
-           data_in: in std_logic_vector(7 downto 0);
-           addr_out: in std_logic_vector(7 downto 0);
-           data_out: out std_logic_vector(7 downto 0));
-end bram;
+           ev_in: in STD_LOGIC_VECTOR((2*1)-1 downto 0); -- Adjust width here!
+           cnt_out : out STD_LOGIC_VECTOR((2*8)-1 downto 0)); -- Adjust width here!
+end pwr_mon;
 
-architecture Behavioral of bram is
+architecture Behavioral of pwr_mon is
 
 begin
 

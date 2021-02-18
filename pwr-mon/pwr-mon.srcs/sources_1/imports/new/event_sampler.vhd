@@ -39,18 +39,18 @@ entity event_sampler is
            nrst: in STD_LOGIC;
            strobe: in STD_LOGIC;
            ev_in: in STD_LOGIC_VECTOR((2*1)-1 downto 0); -- Adjust width here!
-           cnt_out : out STD_LOGIC_VECTOR((2*8)-1 downto 0)); -- Adjust width here!
+           cnt_out : out STD_LOGIC_VECTOR((2*32)-1 downto 0)); -- Adjust width here!
 end event_sampler;
 
 architecture event_sampler_beh of event_sampler is
-    signal s_cnt_out : std_logic_vector((2*8)-1 downto 0); -- Adjust width here!
+    signal s_cnt_out : std_logic_vector((2*32)-1 downto 0); -- Adjust width here!
     signal s_nrst : std_logic;
         
     component sampler
     Port ( clk : in STD_LOGIC;
            nrst : in STD_LOGIC;
            ev : in STD_LOGIC;
-           cnt_out : out STD_LOGIC_VECTOR(7 downto 0));
+           cnt_out : out STD_LOGIC_VECTOR(31 downto 0));
     end component;
     
 begin
@@ -74,7 +74,7 @@ begin
    GEN_REG: 
    for I in 0 to 1 generate -- Adjust here also!
       sampler_i : sampler port map
-        (clk, s_nrst, ev_in(I), s_cnt_out(((I+1)*8)-1 downto I*8));
+        (clk, s_nrst, ev_in(I), s_cnt_out(((I+1)*32)-1 downto I*32));
    end generate GEN_REG;
 
 end event_sampler_beh;

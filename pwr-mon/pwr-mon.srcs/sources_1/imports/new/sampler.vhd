@@ -36,11 +36,26 @@ entity sampler is
     Port ( clk : in STD_LOGIC;
            nrst : in STD_LOGIC;
            ev : in STD_LOGIC;
-           cnt_out : out STD_LOGIC_VECTOR(7 downto 0));
+           cnt_out : out STD_LOGIC_VECTOR(31 downto 0));
 end sampler;
 
 architecture sampler_beh of sampler is
+    signal s_ev_delayed : STD_LOGIC;
+    signal s_edge: STD_LOGIC;
 begin
+
+edge_det: process(clk)
+begin
+    if (clk'event and clk='1') then
+        if (nrst = '0') then
+            s_ev_delayed <= '0';  
+        else
+            s_ev_delayed <= ev;
+        end if;
+    end if;
+end process;
+
+s_edge <= s_ev_delayed xor ev;
 
 sampler: process(clk)
     variable v_cnt_out : integer := 0;
@@ -48,7 +63,7 @@ begin
     if (clk'event and clk='1') then
         if (nrst = '0') then
             v_cnt_out := 0;  
-        elsif (ev = '1') then
+        elsif (s_edge = '1') then
             -- count event
             v_cnt_out := v_cnt_out + 1;
         end if;
