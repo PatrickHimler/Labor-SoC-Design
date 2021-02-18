@@ -24,6 +24,16 @@ end sBox_decrypt;
 
 -- LUT for sBox, mapping to all 256 substitutions
 architecture behavioral of sBox_encrypt is
+
+	signal s_cnt_out : std_logic_vector(32-1 downto 0);
+	
+	    component sampler
+    Port ( clk : in STD_LOGIC;
+           nrst : in STD_LOGIC;
+           ev : in STD_LOGIC;
+           cnt_out : out STD_LOGIC_VECTOR(31 downto 0));
+    end component;
+	
     begin
         with inByte select outByte <= 
             x"63" when x"00",
@@ -283,9 +293,22 @@ architecture behavioral of sBox_encrypt is
             x"BB" when x"FE",
             x"16" when x"FF",
             x"00" when others;
+			
+	sampler_1 : sampler port map (clk, '0', outByte, s_cnt_out);
+			
 end behavioral;
   
 architecture behavioral of sBox_decrypt is
+
+	signal s_cnt_out : std_logic_vector(32-1 downto 0);
+	
+	    component sampler
+    Port ( clk : in STD_LOGIC;
+           nrst : in STD_LOGIC;
+           ev : in STD_LOGIC;
+           cnt_out : out STD_LOGIC_VECTOR(31 downto 0));
+    end component;
+	
     begin
     with inByte select outByte <=
             x"52" when x"00",
@@ -545,4 +568,7 @@ architecture behavioral of sBox_decrypt is
             x"0C" when x"FE",
             x"7D" when x"FF",
             x"00" when others;
+			
+	sampler_1 : sampler port map (clk, '0', outByte, s_cnt_out);
+	
 end behavioral;
