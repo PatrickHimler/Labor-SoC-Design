@@ -18,6 +18,7 @@ use ieee.numeric_std.all;
 entity UART_TX is
   generic (
     g_CLKS_PER_BIT : integer := 868     -- Needs to be set correctly
+--    g_CLKS_PER_BIT : integer := 2 -- SIMULATION ONLY!!
     );
   port (
     i_Clk       : in  std_logic;

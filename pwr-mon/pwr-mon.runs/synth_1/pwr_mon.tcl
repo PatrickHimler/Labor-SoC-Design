@@ -70,6 +70,8 @@ proc create_report { reportName command } {
   }
 }
 OPTRACE "synth_1" START { ROLLUP_AUTO }
+set_param chipscope.maxJobs 3
+set_param xicom.use_bs_reader 1
 OPTRACE "Creating in-memory project" START { }
 create_project -in_memory -part xc7z020clg484-1
 
@@ -86,6 +88,9 @@ set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
 read_vhdl -library xil_defaultlib {
+  F:/Dropbox/04_TU/02_SoC_Labor/Labor-SoC-Design/pwr-mon/pwr-mon.srcs/sources_1/imports/new/event_sampler.vhd
+  F:/Dropbox/04_TU/02_SoC_Labor/Labor-SoC-Design/pwr-mon/pwr-mon.srcs/sources_1/imports/new/sampler.vhd
+  F:/Dropbox/04_TU/02_SoC_Labor/Labor-SoC-Design/pwr-mon/pwr-mon.srcs/sources_1/imports/new/serializer.vhd
   F:/Dropbox/04_TU/02_SoC_Labor/Labor-SoC-Design/pwr-mon/pwr-mon.srcs/sources_1/new/uart_tx.vhd
   F:/Dropbox/04_TU/02_SoC_Labor/Labor-SoC-Design/pwr-mon/pwr-mon.srcs/sources_1/new/pwr_mon.vhd
 }

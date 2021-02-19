@@ -1,6 +1,6 @@
 ----------------------------------------------------------------------------------
 -- Company: 
--- Engineer: 
+-- Engineer: Lukas Vogl
 -- 
 -- Create Date: 29.01.2021 22:01:44
 -- Design Name: 
@@ -23,27 +23,16 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use ieee.numeric_std.all;
 
--- Uncomment the following library declaration if using
--- arithmetic functions with Signed or Unsigned values
---use IEEE.NUMERIC_STD.ALL;
-
--- Uncomment the following library declaration if instantiating
--- any Xilinx leaf cells in this code.
---library UNISIM;
---use UNISIM.VComponents.all;
-
-
-
 entity event_sampler is
     Port ( clk : in STD_LOGIC;
            nrst: in STD_LOGIC;
            strobe: in STD_LOGIC;
-           ev_in: in STD_LOGIC_VECTOR((2*1)-1 downto 0); -- Adjust width here!
-           cnt_out : out STD_LOGIC_VECTOR((2*32)-1 downto 0)); -- Adjust width here!
+           ev_in: in STD_LOGIC_VECTOR((5*1)-1 downto 0); -- Adjust width here!
+           cnt_out : out STD_LOGIC_VECTOR((5*32)-1 downto 0)); -- Adjust width here!
 end event_sampler;
 
 architecture event_sampler_beh of event_sampler is
-    signal s_cnt_out : std_logic_vector((2*32)-1 downto 0); -- Adjust width here!
+    signal s_cnt_out : std_logic_vector((5*32)-1 downto 0); -- Adjust width here!
     signal s_nrst : std_logic;
         
     component sampler
@@ -72,7 +61,7 @@ begin
     end process;
 
    GEN_REG: 
-   for I in 0 to 1 generate -- Adjust here also!
+   for I in 0 to 4 generate -- Adjust here also!
       sampler_i : sampler port map
         (clk, s_nrst, ev_in(I), s_cnt_out(((I+1)*32)-1 downto I*32));
    end generate GEN_REG;

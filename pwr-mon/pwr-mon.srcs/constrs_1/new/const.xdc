@@ -79,18 +79,18 @@
 # ----------------------------------------------------------------------------
 # Clock Source - Bank 13
 # ---------------------------------------------------------------------------- 
-set_property PACKAGE_PIN Y9 [get_ports {GCLK}];  # "GCLK"
+set_property PACKAGE_PIN Y9 [get_ports {clk}];  # "GCLK"
 
 # ----------------------------------------------------------------------------
 # JA Pmod - Bank 13 
 # ---------------------------------------------------------------------------- 
-set_property PACKAGE_PIN Y11  [get_ports {JA1}];  # "JA1"
-#set_property PACKAGE_PIN AA8  [get_ports {JA10}];  # "JA10"
-#set_property PACKAGE_PIN AA11 [get_ports {JA2}];  # "JA2"
-#set_property PACKAGE_PIN Y10  [get_ports {JA3}];  # "JA3"
-#set_property PACKAGE_PIN AA9  [get_ports {JA4}];  # "JA4"
-#set_property PACKAGE_PIN AB11 [get_ports {JA7}];  # "JA7"
-#set_property PACKAGE_PIN AB10 [get_ports {JA8}];  # "JA8"
+set_property PACKAGE_PIN Y11  [get_ports {serial_tx}];  # "JA1"
+set_property PACKAGE_PIN AA8  [get_ports {ev_in[0]}];  # "JA10"
+set_property PACKAGE_PIN AA11 [get_ports {ev_in[1]}];  # "JA2"
+set_property PACKAGE_PIN Y10  [get_ports {ev_in[2]}];  # "JA3"
+set_property PACKAGE_PIN AA9  [get_ports {ev_in[3]}];  # "JA4"
+set_property PACKAGE_PIN AB11 [get_ports {ev_in[4]}];  # "JA7"
+set_property PACKAGE_PIN AB10 [get_ports {ev_in[5]}];  # "JA8"
 #set_property PACKAGE_PIN AB9  [get_ports {JA9}];  # "JA9"
 
 
@@ -202,8 +202,8 @@ set_property PACKAGE_PIN Y11  [get_ports {JA1}];  # "JA1"
 # ----------------------------------------------------------------------------
 # User Push Buttons - Bank 34
 # ---------------------------------------------------------------------------- 
-#set_property PACKAGE_PIN P16 [get_ports {BTNC}];  # "BTNC"
-#set_property PACKAGE_PIN R16 [get_ports {BTND}];  # "BTND"
+set_property PACKAGE_PIN P16 [get_ports {nrst}];  # "BTNC"
+#set_property PACKAGE_PIN R16 [get_ports {ev_in(0)}];  # "BTND"
 #set_property PACKAGE_PIN N15 [get_ports {BTNL}];  # "BTNL"
 #set_property PACKAGE_PIN R18 [get_ports {BTNR}];  # "BTNR"
 #set_property PACKAGE_PIN T18 [get_ports {BTNU}];  # "BTNU"

@@ -1,7 +1,7 @@
 Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 ------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2020.1 (win64) Build 2902540 Wed May 27 19:54:49 MDT 2020
-| Date         : Thu Feb 18 14:45:22 2021
+| Date         : Fri Feb 19 23:08:55 2021
 | Host         : Lukas-Gaming running 64-bit major release  (build 9200)
 | Command      : report_control_sets -verbose -file pwr_mon_control_sets_placed.rpt
 | Design       : pwr_mon
@@ -23,11 +23,11 @@ Table of Contents
 +----------------------------------------------------------+-------+
 |                          Status                          | Count |
 +----------------------------------------------------------+-------+
-| Total control sets                                       |     3 |
-|    Minimum number of control sets                        |     3 |
+| Total control sets                                       |     9 |
+|    Minimum number of control sets                        |     9 |
 |    Addition due to synthesis replication                 |     0 |
 |    Addition due to physical synthesis replication        |     0 |
-| Unused register locations in slices containing registers |    14 |
+| Unused register locations in slices containing registers |    31 |
 +----------------------------------------------------------+-------+
 * Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
 ** Run report_qor_suggestions for automated merging and remapping suggestions
@@ -39,15 +39,15 @@ Table of Contents
 +--------------------+-------+
 |       Fanout       | Count |
 +--------------------+-------+
-| Total control sets |     3 |
+| Total control sets |     9 |
 | >= 0 to < 4        |     1 |
-| >= 4 to < 6        |     0 |
+| >= 4 to < 6        |     1 |
 | >= 6 to < 8        |     1 |
 | >= 8 to < 10       |     0 |
 | >= 10 to < 12      |     1 |
 | >= 12 to < 14      |     0 |
 | >= 14 to < 16      |     0 |
-| >= 16              |     0 |
+| >= 16              |     5 |
 +--------------------+-------+
 * Control sets can be remapped at either synth_design or opt_design
 
@@ -58,24 +58,30 @@ Table of Contents
 +--------------+-----------------------+------------------------+-----------------+--------------+
 | Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
 +--------------+-----------------------+------------------------+-----------------+--------------+
-| No           | No                    | No                     |               7 |            3 |
+| No           | No                    | No                     |              28 |           11 |
 | No           | No                    | Yes                    |               0 |            0 |
-| No           | Yes                   | No                     |               0 |            0 |
+| No           | Yes                   | No                     |             352 |           77 |
 | Yes          | No                    | No                     |               1 |            1 |
 | Yes          | No                    | Yes                    |               0 |            0 |
-| Yes          | Yes                   | No                     |              10 |            2 |
+| Yes          | Yes                   | No                     |             212 |           71 |
 +--------------+-----------------------+------------------------+-----------------+--------------+
 
 
 4. Detailed Control Set Information
 -----------------------------------
 
-+-----------------+-------------------------+------------------------+------------------+----------------+--------------+
-|   Clock Signal  |      Enable Signal      |    Set/Reset Signal    | Slice Load Count | Bel Load Count | Bels / Slice |
-+-----------------+-------------------------+------------------------+------------------+----------------+--------------+
-|  GCLK_IBUF_BUFG | uart_tx_i/r_SM_Main[2]  |                        |                1 |              1 |         1.00 |
-|  GCLK_IBUF_BUFG |                         |                        |                3 |              7 |         2.33 |
-|  GCLK_IBUF_BUFG | uart_tx_i/r_Clk_Count_0 | uart_tx_i/r_Clk_Count0 |                2 |             10 |         5.00 |
-+-----------------+-------------------------+------------------------+------------------+----------------+--------------+
++----------------+------------------------------+-----------------------------------------------+------------------+----------------+--------------+
+|  Clock Signal  |         Enable Signal        |                Set/Reset Signal               | Slice Load Count | Bel Load Count | Bels / Slice |
++----------------+------------------------------+-----------------------------------------------+------------------+----------------+--------------+
+|  clk_IBUF_BUFG | uart_tx_i/r_SM_Main[2]       |                                               |                1 |              1 |         1.00 |
+|  clk_IBUF_BUFG | uart_tx_i/r_TX_Data_0        | uart_tx_i/r_TX_Data[6]_i_1_n_0                |                3 |              4 |         1.33 |
+|  clk_IBUF_BUFG | uart_tx_i/r_TX_Done_reg_0[0] | serializer_i/FSM_sequential_nxt_st[5]_i_1_n_0 |                2 |              6 |         3.00 |
+|  clk_IBUF_BUFG | uart_tx_i/r_Clk_Count_1      | uart_tx_i/r_Clk_Count0                        |                3 |             10 |         3.33 |
+|  clk_IBUF_BUFG |                              | event_sampler_i/SR[0]                         |                9 |             27 |         3.00 |
+|  clk_IBUF_BUFG |                              |                                               |               11 |             28 |         2.55 |
+|  clk_IBUF_BUFG | uart_tx_i/E[0]               | event_sampler_i/SR[0]                         |               10 |             32 |         3.20 |
+|  clk_IBUF_BUFG | tick                         | event_sampler_i/SR[0]                         |               53 |            160 |         3.02 |
+|  clk_IBUF_BUFG |                              | event_sampler_i/p_0_in                        |               68 |            325 |         4.78 |
++----------------+------------------------------+-----------------------------------------------+------------------+----------------+--------------+
 
 

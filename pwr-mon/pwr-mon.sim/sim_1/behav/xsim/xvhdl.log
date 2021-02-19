@@ -1,2 +1,4 @@
-INFO: [VRFC 10-163] Analyzing VHDL file "F:/Dropbox/04_TU/02_SoC_Labor/Labor-SoC-Design/pwr-mon/pwr-mon.srcs/sources_1/imports/new/event_sampler.vhd" into library xil_defaultlib
-INFO: [VRFC 10-3107] analyzing entity 'event_sampler'
+INFO: [VRFC 10-163] Analyzing VHDL file "F:/Dropbox/04_TU/02_SoC_Labor/Labor-SoC-Design/pwr-mon/pwr-mon.srcs/sources_1/new/pwr_mon.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'pwr_mon'
+INFO: [VRFC 10-163] Analyzing VHDL file "F:/Dropbox/04_TU/02_SoC_Labor/Labor-SoC-Design/pwr-mon/pwr-mon.srcs/sources_1/imports/new/serializer.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'serializer'

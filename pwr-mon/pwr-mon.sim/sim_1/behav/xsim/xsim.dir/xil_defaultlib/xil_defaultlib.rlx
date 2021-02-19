@@ -4,5 +4,10 @@ May 27 2020
 20:09:33
 F:/Dropbox/04_TU/02_SoC_Labor/Labor-SoC-Design/pwr-mon/pwr-mon.sim/sim_1/behav/xsim/glbl.v,1590624368,verilog,,,,glbl,,axi_vip_v1_1_7;processing_system7_vip_v1_0_9;xilinx_vip,,,,,,
 F:/Dropbox/04_TU/02_SoC_Labor/Labor-SoC-Design/pwr-mon/pwr-mon.srcs/sim_1/imports/new/event_sampler_tb.vhd,1613638490,vhdl,,,,event_sampler_tb,,,,,,,,
-F:/Dropbox/04_TU/02_SoC_Labor/Labor-SoC-Design/pwr-mon/pwr-mon.srcs/sources_1/imports/new/event_sampler.vhd,1613638596,vhdl,,,,event_sampler,,,,,,,,
+F:/Dropbox/04_TU/02_SoC_Labor/Labor-SoC-Design/pwr-mon/pwr-mon.srcs/sim_1/new/pwr_mon_tb.vhd,1613767042,vhdl,,,,pwr_mon_tb,,,,,,,,
+F:/Dropbox/04_TU/02_SoC_Labor/Labor-SoC-Design/pwr-mon/pwr-mon.srcs/sim_1/new/serializer_tb.vhd,1613765697,vhdl,,,,serializer_tb,,,,,,,,
+F:/Dropbox/04_TU/02_SoC_Labor/Labor-SoC-Design/pwr-mon/pwr-mon.srcs/sources_1/imports/new/event_sampler.vhd,1613740399,vhdl,,,,event_sampler,,,,,,,,
 F:/Dropbox/04_TU/02_SoC_Labor/Labor-SoC-Design/pwr-mon/pwr-mon.srcs/sources_1/imports/new/sampler.vhd,1613638475,vhdl,,,,sampler,,,,,,,,
+F:/Dropbox/04_TU/02_SoC_Labor/Labor-SoC-Design/pwr-mon/pwr-mon.srcs/sources_1/imports/new/serializer.vhd,1613770180,vhdl,,,,serializer,,,,,,,,
+F:/Dropbox/04_TU/02_SoC_Labor/Labor-SoC-Design/pwr-mon/pwr-mon.srcs/sources_1/new/pwr_mon.vhd,1613770277,vhdl,,,,pwr_mon,,,,,,,,
+F:/Dropbox/04_TU/02_SoC_Labor/Labor-SoC-Design/pwr-mon/pwr-mon.srcs/sources_1/new/uart_tx.vhd,1613766778,vhdl,,,,uart_tx,,,,,,,,
