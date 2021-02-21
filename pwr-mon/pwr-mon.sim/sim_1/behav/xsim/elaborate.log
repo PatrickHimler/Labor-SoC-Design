@@ -1,9 +1,8 @@
 Vivado Simulator 2020.1
 Copyright 1986-1999, 2001-2020 Xilinx, Inc. All Rights Reserved.
-Running: E:/others/Xilinx/Vivado/2020.1/bin/unwrapped/win64.o/xelab.exe -wto b31c6d63ce4442cb81b024b2854962e4 --incr --debug typical --relax --mt 2 -L xil_defaultlib -L xilinx_vip -L unisims_ver -L unimacro_ver -L secureip -L xpm --snapshot event_sampler_tb_behav xil_defaultlib.event_sampler_tb xil_defaultlib.glbl -log elaborate.log 
+Running: E:/others/Xilinx/Vivado/2020.1/bin/unwrapped/win64.o/xelab.exe -wto b31c6d63ce4442cb81b024b2854962e4 --incr --debug typical --relax --mt 2 -L xil_defaultlib -L xilinx_vip -L secureip -L xpm --snapshot pwr_mon_tb_behav xil_defaultlib.pwr_mon_tb -log elaborate.log 
 Using 2 slave threads.
 Starting static elaboration
-Pass Through NonSizing Optimizer
 Completed static elaboration
 Starting simulation data flow analysis
 Completed simulation data flow analysis
@@ -12,8 +11,10 @@ Compiling package std.standard
 Compiling package std.textio
 Compiling package ieee.std_logic_1164
 Compiling package ieee.numeric_std
-Compiling module xil_defaultlib.glbl
 Compiling architecture sampler_beh of entity xil_defaultlib.sampler [sampler_default]
 Compiling architecture event_sampler_beh of entity xil_defaultlib.event_sampler [event_sampler_default]
-Compiling architecture behavioral of entity xil_defaultlib.event_sampler_tb
-Built simulation snapshot event_sampler_tb_behav
+Compiling architecture behavioral of entity xil_defaultlib.serializer [serializer_default]
+Compiling architecture rtl of entity xil_defaultlib.UART_TX [uart_tx_default]
+Compiling architecture behavioral of entity xil_defaultlib.pwr_mon [pwr_mon_default]
+Compiling architecture behavioral of entity xil_defaultlib.pwr_mon_tb
+Built simulation snapshot pwr_mon_tb_behav

@@ -36,15 +36,6 @@ architecture Behavioral of mixColumns is
 	signal mult_e : STATE;
 	signal mixCol : STATE;
 	signal invMixCol : STATE;
-	
-	signal s_cnt_out : std_logic_vector(32-1 downto 0);
-	
-	    component sampler
-    Port ( clk : in STD_LOGIC;
-           nrst : in STD_LOGIC;
-           ev : in STD_LOGIC;
-           cnt_out : out STD_LOGIC_VECTOR(31 downto 0));
-    end component;
 
 -- All possible multiplications are performed on the incoming state
 -- The multiplications are peiced together at the end for proper outState
@@ -81,7 +72,5 @@ begin
 	
 	-- Select encrypt or decrypt
 	outState <= mixCol when (mode = ENCRYPTION) else invMixcol;
-	
-	sampler_1 : sampler port map (clk, '0', outState, s_cnt_out);
 		
 end Behavioral;

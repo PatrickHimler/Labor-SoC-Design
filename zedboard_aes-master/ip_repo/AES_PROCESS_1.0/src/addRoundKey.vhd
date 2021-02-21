@@ -16,23 +16,10 @@ end addRoundKey;
 
 -- Adds the round key to state by an XOR function
 architecture behavioral of addRoundKey is
-
-	signal s_cnt_out : std_logic_vector(32-1 downto 0);
-	
-	    component sampler
-    Port ( clk : in STD_LOGIC;
-           nrst : in STD_LOGIC;
-           ev : in STD_LOGIC;
-           cnt_out : out STD_LOGIC_VECTOR(31 downto 0));
-    end component;
-
 begin
     loopWords: for i in 0 to (word_size-1) generate
         loopBytes: for j in 0 to (word_size-1) generate
             outState(i)(j) <= inState(i)(j) xor inKey(i)(j);
         end generate loopBytes;
     end generate loopWords;
-	
-	sampler_1 : sampler port map (clk, '0', outState, s_cnt_out);
-	
 end behavioral;

@@ -1,0 +1,12 @@
+
+{ 
+    crc :  6970859397171435874  , 
+    ccp_crc :  0  , 
+    cmdline : " -wto b31c6d63ce4442cb81b024b2854962e4 --incr --debug typical --relax --mt 2 -L xil_defaultlib -L xilinx_vip -L secureip -L xpm --snapshot pwr_mon_tb_behav xil_defaultlib.pwr_mon_tb" , 
+    buildDate : "May 27 2020" , 
+    buildTime : "20:09:33" , 
+    linkCmd : "E:\\others\\Xilinx\\Vivado\\2020.1\\data\\..\\tps\\mingw\\6.2.0\\win64.o\\nt\\bin\\gcc.exe -Wa,-W  -O -Wl,--stack,104857600 -o \"xsim.dir/pwr_mon_tb_behav/xsimk.exe\"   \"xsim.dir/pwr_mon_tb_behav/obj/xsim_0.win64.obj\" \"xsim.dir/pwr_mon_tb_behav/obj/xsim_1.win64.obj\" -L\"E:\\others\\Xilinx\\Vivado\\2020.1\\lib\\win64.o\" -lrdi_simulator_kernel   -lrdi_simbridge_kernel" , 
+    aggregate_nets : 
+    [ 
+    ] 
+} 
