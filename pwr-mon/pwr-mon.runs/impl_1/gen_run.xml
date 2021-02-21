@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="impl_1" LaunchPart="xc7z020clg484-1" LaunchTime="1613772478">
+<GenRun Id="impl_1" LaunchPart="xc7z020clg484-1" LaunchTime="1613910712">
   <File Type="BITSTR-BMM" Name="pwr_mon_bd.bmm"/>
   <File Type="OPT-METHODOLOGY-DRC" Name="pwr_mon_methodology_drc_opted.rpt"/>
   <File Type="INIT-TIMING" Name="pwr_mon_timing_summary_init.rpt"/>
@@ -145,6 +145,9 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
+    <File Path="$PPRDIR/ip/component.xml">
+      <FileInfo SFType="IPXACT"/>
+    </File>
     <Config>
       <Option Name="DesignMode" Val="RTL"/>
       <Option Name="TopModule" Val="pwr_mon"/>
@@ -171,7 +174,9 @@
     </Config>
   </FileSet>
   <Strategy Version="1" Minor="2">
-    <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2020"/>
+    <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2020">
+      <Desc>Default settings for Implementation.</Desc>
+    </StratHandle>
     <Step Id="init_design"/>
     <Step Id="opt_design"/>
     <Step Id="power_opt_design"/>

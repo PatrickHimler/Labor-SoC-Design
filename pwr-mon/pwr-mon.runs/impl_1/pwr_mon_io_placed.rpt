@@ -1,8 +1,8 @@
 Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------
 | Tool Version              : Vivado v.2020.1 (win64) Build 2902540 Wed May 27 19:54:49 MDT 2020
-| Date                      : Fri Feb 19 23:08:55 2021
-| Host                      : Lukas-Gaming running 64-bit major release  (build 9200)
+| Date                      : Sun Feb 21 13:32:57 2021
+| Host                      : nb-aspodinger running 64-bit major release  (build 9200)
 | Command                   : report_io -file pwr_mon_io_placed.rpt
 | Design                    : pwr_mon
 | Device                    : xc7z020

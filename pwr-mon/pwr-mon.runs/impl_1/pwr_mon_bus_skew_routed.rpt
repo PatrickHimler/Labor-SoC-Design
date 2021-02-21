@@ -1,8 +1,8 @@
 Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 ------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2020.1 (win64) Build 2902540 Wed May 27 19:54:49 MDT 2020
-| Date         : Fri Feb 19 23:09:15 2021
-| Host         : Lukas-Gaming running 64-bit major release  (build 9200)
+| Date         : Sun Feb 21 13:33:44 2021
+| Host         : nb-aspodinger running 64-bit major release  (build 9200)
 | Command      : report_bus_skew -warn_on_violation -file pwr_mon_bus_skew_routed.rpt -pb pwr_mon_bus_skew_routed.pb -rpx pwr_mon_bus_skew_routed.rpx
 | Design       : pwr_mon
 | Device       : 7z020-clg484

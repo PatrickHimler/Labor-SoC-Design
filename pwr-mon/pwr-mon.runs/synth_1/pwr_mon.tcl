@@ -4,7 +4,7 @@
 
 set TIME_start [clock seconds] 
 namespace eval ::optrace {
-  variable script "F:/Dropbox/04_TU/02_SoC_Labor/Labor-SoC-Design/pwr-mon/pwr-mon.runs/synth_1/pwr_mon.tcl"
+  variable script "C:/Uni/Labor-SoC-Design/pwr-mon/pwr-mon.runs/synth_1/pwr_mon.tcl"
   variable category "vivado_synth"
 }
 
@@ -70,29 +70,27 @@ proc create_report { reportName command } {
   }
 }
 OPTRACE "synth_1" START { ROLLUP_AUTO }
-set_param chipscope.maxJobs 3
-set_param xicom.use_bs_reader 1
 OPTRACE "Creating in-memory project" START { }
 create_project -in_memory -part xc7z020clg484-1
 
 set_param project.singleFileAddWarning.threshold 0
 set_param project.compositeFile.enableAutoGeneration 0
 set_param synth.vivado.isSynthRun true
-set_property webtalk.parent_dir F:/Dropbox/04_TU/02_SoC_Labor/Labor-SoC-Design/pwr-mon/pwr-mon.cache/wt [current_project]
-set_property parent.project_path F:/Dropbox/04_TU/02_SoC_Labor/Labor-SoC-Design/pwr-mon/pwr-mon.xpr [current_project]
+set_property webtalk.parent_dir C:/Uni/Labor-SoC-Design/pwr-mon/pwr-mon.cache/wt [current_project]
+set_property parent.project_path C:/Uni/Labor-SoC-Design/pwr-mon/pwr-mon.xpr [current_project]
 set_property default_lib xil_defaultlib [current_project]
-set_property target_language Verilog [current_project]
+set_property target_language VHDL [current_project]
 set_property board_part em.avnet.com:zed:part0:1.4 [current_project]
-set_property ip_output_repo f:/Dropbox/04_TU/02_SoC_Labor/Labor-SoC-Design/pwr-mon/pwr-mon.cache/ip [current_project]
+set_property ip_output_repo c:/Uni/Labor-SoC-Design/pwr-mon/pwr-mon.cache/ip [current_project]
 set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
 read_vhdl -library xil_defaultlib {
-  F:/Dropbox/04_TU/02_SoC_Labor/Labor-SoC-Design/pwr-mon/pwr-mon.srcs/sources_1/imports/new/event_sampler.vhd
-  F:/Dropbox/04_TU/02_SoC_Labor/Labor-SoC-Design/pwr-mon/pwr-mon.srcs/sources_1/imports/new/sampler.vhd
-  F:/Dropbox/04_TU/02_SoC_Labor/Labor-SoC-Design/pwr-mon/pwr-mon.srcs/sources_1/imports/new/serializer.vhd
-  F:/Dropbox/04_TU/02_SoC_Labor/Labor-SoC-Design/pwr-mon/pwr-mon.srcs/sources_1/new/uart_tx.vhd
-  F:/Dropbox/04_TU/02_SoC_Labor/Labor-SoC-Design/pwr-mon/pwr-mon.srcs/sources_1/new/pwr_mon.vhd
+  C:/Uni/Labor-SoC-Design/pwr-mon/pwr-mon.srcs/sources_1/imports/new/event_sampler.vhd
+  C:/Uni/Labor-SoC-Design/pwr-mon/pwr-mon.srcs/sources_1/imports/new/sampler.vhd
+  C:/Uni/Labor-SoC-Design/pwr-mon/pwr-mon.srcs/sources_1/imports/new/serializer.vhd
+  C:/Uni/Labor-SoC-Design/pwr-mon/pwr-mon.srcs/sources_1/new/uart_tx.vhd
+  C:/Uni/Labor-SoC-Design/pwr-mon/pwr-mon.srcs/sources_1/new/pwr_mon.vhd
 }
 OPTRACE "Adding files" END { }
 # Mark all dcp files as not used in implementation to prevent them from being
@@ -103,8 +101,8 @@ OPTRACE "Adding files" END { }
 foreach dcp [get_files -quiet -all -filter file_type=="Design\ Checkpoint"] {
   set_property used_in_implementation false $dcp
 }
-read_xdc F:/Dropbox/04_TU/02_SoC_Labor/Labor-SoC-Design/pwr-mon/pwr-mon.srcs/constrs_1/new/const.xdc
-set_property used_in_implementation false [get_files F:/Dropbox/04_TU/02_SoC_Labor/Labor-SoC-Design/pwr-mon/pwr-mon.srcs/constrs_1/new/const.xdc]
+read_xdc C:/Uni/Labor-SoC-Design/pwr-mon/pwr-mon.srcs/constrs_1/new/const.xdc
+set_property used_in_implementation false [get_files C:/Uni/Labor-SoC-Design/pwr-mon/pwr-mon.srcs/constrs_1/new/const.xdc]
 
 set_param ips.enableIPCacheLiteLoad 1
 close [open __synthesis_is_running__ w]

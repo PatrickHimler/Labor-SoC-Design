@@ -125,7 +125,7 @@ if {[string equal [get_filesets -quiet sources_1] ""]} {
 
 # Set IP repository paths
 set obj [get_filesets sources_1]
-set_property "ip_repo_paths" "[file normalize "$origin_dir/ip_repo/AES_PROCESS_1.0"] [file normalize "$origin_dir/ip_repo/AMA142_OLED"]" $obj
+set_property "ip_repo_paths" "[file normalize "$origin_dir/ip_repo/AES_PROCESS_1.0"] [file normalize "$origin_dir/ip_repo/pwr_mon_1.0"] [file normalize "$origin_dir/ip_repo/AMA142_OLED"]" $obj
 
 # Rebuild user ip_repo's index before adding any source files
 update_ip_catalog -rebuild
@@ -211,6 +211,7 @@ proc cr_bd_system { parentCell } {
   if { $bCheckIPs == 1 } {
      set list_check_ips "\ 
   sfu.ca:user:AES_PROCESS:1.0\
+  sfu.ca:user:pwr_mon:1.0\
   tamu.edu:user:ZedboardOLED:1.0\
   xilinx.com:ip:axi_gpio:2.0\
   xilinx.com:ip:axi_dma:7.1\
@@ -285,6 +286,7 @@ proc cr_bd_system { parentCell } {
 
   # Create instance: AES_PROCESS_0, and set properties
   set AES_PROCESS_0 [ create_bd_cell -type ip -vlnv sfu.ca:user:AES_PROCESS:1.0 AES_PROCESS_0 ]
+  set pwr_mon_0 [ create_bd_cell -type ip -vlnv sfu.ca:user:pwr_mon:1.0 pwr_mon_0 ]
 
   # Create instance: AMA142_OLED_AXI, and set properties
   set AMA142_OLED_AXI [ create_bd_cell -type ip -vlnv tamu.edu:user:ZedboardOLED:1.0 AMA142_OLED_AXI ]
@@ -765,10 +767,10 @@ proc cr_bd_system { parentCell } {
   connect_bd_net -net AMA142_OLED_AXI_SDIN [get_bd_ports SDIN] [get_bd_pins AMA142_OLED_AXI/SDIN]
   connect_bd_net -net AMA142_OLED_AXI_VBAT [get_bd_ports VBAT] [get_bd_pins AMA142_OLED_AXI/VBAT]
   connect_bd_net -net AMA142_OLED_AXI_VDD [get_bd_ports VDD] [get_bd_pins AMA142_OLED_AXI/VDD]
-  connect_bd_net -net processing_system7_0_FCLK_CLK0 [get_bd_pins AES_PROCESS_0/AXIS_ACLK] [get_bd_pins AES_PROCESS_0/s00_axi_aclk] [get_bd_pins AMA142_OLED_AXI/s00_axi_aclk] [get_bd_pins BTN_GPIO_AXI/s_axi_aclk] [get_bd_pins SW_LED_GPIO_AXI/s_axi_aclk] [get_bd_pins axi_dma_0/m_axi_mm2s_aclk] [get_bd_pins axi_dma_0/m_axi_s2mm_aclk] [get_bd_pins axi_dma_0/s_axi_lite_aclk] [get_bd_pins axi_smc/aclk] [get_bd_pins processing_system7_0/FCLK_CLK0] [get_bd_pins processing_system7_0/M_AXI_GP0_ACLK] [get_bd_pins processing_system7_0/S_AXI_HP0_ACLK] [get_bd_pins ps7_0_axi_periph/ACLK] [get_bd_pins ps7_0_axi_periph/M00_ACLK] [get_bd_pins ps7_0_axi_periph/M01_ACLK] [get_bd_pins ps7_0_axi_periph/M02_ACLK] [get_bd_pins ps7_0_axi_periph/M03_ACLK] [get_bd_pins ps7_0_axi_periph/M04_ACLK] [get_bd_pins ps7_0_axi_periph/S00_ACLK] [get_bd_pins rst_ps7_0_100M/slowest_sync_clk]
+  connect_bd_net -net processing_system7_0_FCLK_CLK0 [get_bd_pins AES_PROCESS_0/AXIS_ACLK] [get_bd_pins AES_PROCESS_0/s00_axi_aclk] [get_bd_pins pwr_mon_0/clk] [get_bd_pins AMA142_OLED_AXI/s00_axi_aclk] [get_bd_pins BTN_GPIO_AXI/s_axi_aclk] [get_bd_pins SW_LED_GPIO_AXI/s_axi_aclk] [get_bd_pins axi_dma_0/m_axi_mm2s_aclk] [get_bd_pins axi_dma_0/m_axi_s2mm_aclk] [get_bd_pins axi_dma_0/s_axi_lite_aclk] [get_bd_pins axi_smc/aclk] [get_bd_pins processing_system7_0/FCLK_CLK0] [get_bd_pins processing_system7_0/M_AXI_GP0_ACLK] [get_bd_pins processing_system7_0/S_AXI_HP0_ACLK] [get_bd_pins ps7_0_axi_periph/ACLK] [get_bd_pins ps7_0_axi_periph/M00_ACLK] [get_bd_pins ps7_0_axi_periph/M01_ACLK] [get_bd_pins ps7_0_axi_periph/M02_ACLK] [get_bd_pins ps7_0_axi_periph/M03_ACLK] [get_bd_pins ps7_0_axi_periph/M04_ACLK] [get_bd_pins ps7_0_axi_periph/S00_ACLK] [get_bd_pins rst_ps7_0_100M/slowest_sync_clk]
   connect_bd_net -net processing_system7_0_FCLK_RESET0_N [get_bd_pins processing_system7_0/FCLK_RESET0_N] [get_bd_pins rst_ps7_0_100M/ext_reset_in]
   connect_bd_net -net rst_ps7_0_100M_interconnect_aresetn [get_bd_pins ps7_0_axi_periph/ARESETN] [get_bd_pins rst_ps7_0_100M/interconnect_aresetn]
-  connect_bd_net -net rst_ps7_0_100M_peripheral_aresetn [get_bd_pins AES_PROCESS_0/AXIS_ARESETN] [get_bd_pins AES_PROCESS_0/s00_axi_aresetn] [get_bd_pins AMA142_OLED_AXI/s00_axi_aresetn] [get_bd_pins BTN_GPIO_AXI/s_axi_aresetn] [get_bd_pins SW_LED_GPIO_AXI/s_axi_aresetn] [get_bd_pins axi_dma_0/axi_resetn] [get_bd_pins axi_smc/aresetn] [get_bd_pins ps7_0_axi_periph/M00_ARESETN] [get_bd_pins ps7_0_axi_periph/M01_ARESETN] [get_bd_pins ps7_0_axi_periph/M02_ARESETN] [get_bd_pins ps7_0_axi_periph/M03_ARESETN] [get_bd_pins ps7_0_axi_periph/M04_ARESETN] [get_bd_pins ps7_0_axi_periph/S00_ARESETN] [get_bd_pins rst_ps7_0_100M/peripheral_aresetn]
+  connect_bd_net -net rst_ps7_0_100M_peripheral_aresetn [get_bd_pins AES_PROCESS_0/AXIS_ARESETN] [get_bd_pins AES_PROCESS_0/s00_axi_aresetn] [get_bd_pins pwr_mon_0/nrst] [get_bd_pins AMA142_OLED_AXI/s00_axi_aresetn] [get_bd_pins BTN_GPIO_AXI/s_axi_aresetn] [get_bd_pins SW_LED_GPIO_AXI/s_axi_aresetn] [get_bd_pins axi_dma_0/axi_resetn] [get_bd_pins axi_smc/aresetn] [get_bd_pins ps7_0_axi_periph/M00_ARESETN] [get_bd_pins ps7_0_axi_periph/M01_ARESETN] [get_bd_pins ps7_0_axi_periph/M02_ARESETN] [get_bd_pins ps7_0_axi_periph/M03_ARESETN] [get_bd_pins ps7_0_axi_periph/M04_ARESETN] [get_bd_pins ps7_0_axi_periph/S00_ARESETN] [get_bd_pins rst_ps7_0_100M/peripheral_aresetn]
 
   # Create address segments
   create_bd_addr_seg -range 0x20000000 -offset 0x00000000 [get_bd_addr_spaces axi_dma_0/Data_MM2S] [get_bd_addr_segs processing_system7_0/S_AXI_HP0/HP0_DDR_LOWOCM] SEG_processing_system7_0_HP0_DDR_LOWOCM

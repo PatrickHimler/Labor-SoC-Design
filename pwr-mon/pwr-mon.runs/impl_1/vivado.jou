@@ -2,11 +2,11 @@
 # Vivado v2020.1 (64-bit)
 # SW Build 2902540 on Wed May 27 19:54:49 MDT 2020
 # IP Build 2902112 on Wed May 27 22:43:36 MDT 2020
-# Start of session at: Fri Feb 19 23:08:36 2021
-# Process ID: 22900
-# Current directory: F:/Dropbox/04_TU/02_SoC_Labor/Labor-SoC-Design/pwr-mon/pwr-mon.runs/impl_1
+# Start of session at: Sun Feb 21 13:32:03 2021
+# Process ID: 15216
+# Current directory: C:/Uni/Labor-SoC-Design/pwr-mon/pwr-mon.runs/impl_1
 # Command line: vivado.exe -log pwr_mon.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source pwr_mon.tcl -notrace
-# Log file: F:/Dropbox/04_TU/02_SoC_Labor/Labor-SoC-Design/pwr-mon/pwr-mon.runs/impl_1/pwr_mon.vdi
-# Journal file: F:/Dropbox/04_TU/02_SoC_Labor/Labor-SoC-Design/pwr-mon/pwr-mon.runs/impl_1\vivado.jou
+# Log file: C:/Uni/Labor-SoC-Design/pwr-mon/pwr-mon.runs/impl_1/pwr_mon.vdi
+# Journal file: C:/Uni/Labor-SoC-Design/pwr-mon/pwr-mon.runs/impl_1\vivado.jou
 #-----------------------------------------------------------
 source pwr_mon.tcl -notrace
