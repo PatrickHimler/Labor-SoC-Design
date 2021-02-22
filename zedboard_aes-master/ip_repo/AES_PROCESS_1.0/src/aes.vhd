@@ -48,9 +48,9 @@ architecture Behavioral of aes is
 
 	--signal s_xorWord_v : std_logic;
 	--signal s_mixColumns_v : std_logic;
-	signal s_addRoundKey_v : std_logic_vector(2 downto 0);
+	signal s_addRoundKey_v : std_logic_vector(2 downto 0) := "000";
 
-	signal toggle_add : std_logic_vector(2 downto 0);
+	signal toggle_add : std_logic_vector(2 downto 0) := "000";
 	signal tmp : std_logic := '0';
 	
 begin
@@ -78,10 +78,13 @@ begin
 		if reset = '1' then
 			round <= round0;
 			done <= '0';
+			s_addRoundKey <= '0';
 		
 		elsif clk'event and clk = '1' then
+		    s_addRoundKey <= '0';
 			case round is
 				when round0  => round <= round1;
+				                     s_addRoundKey <= '1';
 									 curr_key <= key_schedule (1);
 									 curr_state <= first_state;
 									 
@@ -139,14 +142,14 @@ begin
 	end process;
 
 
-signal_toggle_add : process (s_addRoundKey_v) is
-    begin
-    if (toggle_add /= s_addRoundKey_v) then
-      s_addRoundKey <= not tmp;
-	  tmp <= not tmp;
-    end if;
-    toggle_add <= s_addRoundKey_v;
-end process signal_toggle_add;
+--signal_toggle_add : process (s_addRoundKey_v) is
+--    begin
+--    if (toggle_add /= s_addRoundKey_v) then
+--      s_addRoundKey <= not tmp;
+--	  tmp <= not tmp;
+--    end if;
+--    toggle_add <= s_addRoundKey_v;
+--end process signal_toggle_add;
 
 	--s_xorWord <= s_xorWord_v;
 	--s_mixColumns <= s_mixColumns_v;
