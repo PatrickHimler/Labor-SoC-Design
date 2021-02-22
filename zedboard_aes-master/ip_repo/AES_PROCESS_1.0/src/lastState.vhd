@@ -14,7 +14,8 @@ entity lastState is
 		  inState : in  STATE;
 			mode  : in AES_MODE;
 			inKey : in  STATE;
-			outState : out STATE
+			outState : out STATE;
+			s_addRoundKey : out std_logic
 			);
 			
 end lastState;
@@ -22,18 +23,31 @@ end lastState;
 architecture Behavioral of lastState is
 	signal temp_encrypt : STATE_ARRAY (0 to 2);
 	signal temp_decrypt : STATE_ARRAY (0 to 2);
+	signal s_addRoundKey_v : std_logic_vector (1 downto 0);
+	signal toggle_add : std_logic_vector(1 downto 0);
+	
+	signal tmp : std_logic := '0';
 
 begin
 		subBytes   : entity work.subBytes    port map (clk => clk, inMode => ENCRYPTION, inState => inState, outState => temp_encrypt (0));
 		shiftRows  : entity work.shiftRows   port map (inMode => ENCRYPTION, inState => temp_encrypt (0), outState => temp_encrypt (1));
-		addRoundKey: entity work.addRoundKey port map (clk => clk, inState => temp_encrypt (1), inKey => inKey, outState => temp_encrypt (2)); 
+		addRoundKey: entity work.addRoundKey port map (clk => clk, inState => temp_encrypt (1), inKey => inKey, outState => temp_encrypt (2), s_addRoundKey => s_addRoundKey_v(0)); 
 	
 
 		invShiftRows : entity work.shiftRows port map (inMode => DECRYPTION, inState => inState, outState => temp_decrypt (0));
 		invSubBytes  : entity work.subBytes  port map (clk => clk, inMode => DECRYPTION, inState => temp_decrypt (0), outState => temp_decrypt (1));
-		invAddRoundKey  : entity work.addRoundKey  port map (clk => clk, inState => temp_decrypt (1), inKey => inKey, outState => temp_decrypt (2));
+		invAddRoundKey  : entity work.addRoundKey  port map (clk => clk, inState => temp_decrypt (1), inKey => inKey, outState => temp_decrypt (2), s_addRoundKey => s_addRoundKey_v(1));
 		
-		outState <= temp_encrypt (2) when (mode = ENCRYPTION) else temp_decrypt (2);	
+		outState <= temp_encrypt (2) when (mode = ENCRYPTION) else temp_decrypt (2);
+
+signal_toggle_add : process (s_addRoundKey_v) is
+    begin
+    if (toggle_add /= s_addRoundKey_v) then
+	  s_addRoundKey <= not tmp;
+	  tmp <= not tmp;
+    end if;
+    toggle_add <= s_addRoundKey_v;
+    end process signal_toggle_add;
  
 end Behavioral;
 

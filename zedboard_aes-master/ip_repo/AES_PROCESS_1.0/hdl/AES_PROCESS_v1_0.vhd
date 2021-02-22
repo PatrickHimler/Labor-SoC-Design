@@ -56,7 +56,14 @@ entity AES_PROCESS_v1_0 is
 		s00_axi_rdata	: out std_logic_vector(C_S00_AXI_DATA_WIDTH-1 downto 0);
 		s00_axi_rresp	: out std_logic_vector(1 downto 0);
 		s00_axi_rvalid	: out std_logic;
-		s00_axi_rready	: in std_logic
+		s00_axi_rready	: in std_logic;
+
+        s_pwr_v : out std_logic_vector(4 downto 0)
+        --s_xorWord : out std_logic;
+        --s_mixColumns : out std_logic;
+        --s_sBox_e : out std_logic;
+        --s_sBox_d : out std_logic;
+        --s_addRoundKey : out std_logic
 	);
 end AES_PROCESS_v1_0;
 
@@ -103,6 +110,10 @@ architecture arch_imp of AES_PROCESS_v1_0 is
     -- AES Control signals
     signal aes_reset : std_logic;
     signal aes_done : std_logic;
+
+    --signal s_xorWord_v : std_logic;
+    --signal s_mixColumns_v : std_logic;
+    --signal s_addRoundKey_v : std_logic;
 
 
 	-- component declaration
@@ -200,7 +211,8 @@ AES_PROCESS_v1_0_S00_AXI_inst : AES_PROCESS_v1_0_S00_AXI
         --outMode <= ZEROS when (aes_mode = ENCRYPTION) else ONES;
         
         -- AES port map
-        aes : entity work.aes port map (clk => AXIS_ACLK, reset => aes_reset, done => aes_done, mode => aes_mode, i => inState, k => inKey, o => outState);
+        aes : entity work.aes port map (clk => AXIS_ACLK, reset => aes_reset, done => aes_done, mode => aes_mode, i => inState, k => inKey, o => outState, s_xorWord => s_pwr_v(0),
+            s_mixColumns => s_pwr_v(1), s_addRoundKey => s_pwr_v(4));
     
         state_machine : process (AXIS_ACLK) is
         begin
@@ -277,5 +289,10 @@ AES_PROCESS_v1_0_S00_AXI_inst : AES_PROCESS_v1_0_S00_AXI
         end process state_machine;
 
 	-- User logic ends
+    --s_pwr_v() <= s_xorWord_v;
+    --s_mixColumns <= s_mixColumns_v;
+    --s_addRoundKey <= s_addRoundKey_v;
+    s_pwr_v(2) <= '0';
+    s_pwr_v(3) <= '0';
 
 end arch_imp;

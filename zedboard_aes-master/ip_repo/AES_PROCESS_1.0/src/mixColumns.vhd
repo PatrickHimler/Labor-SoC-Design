@@ -23,7 +23,8 @@ entity mixColumns is
 	port (clk	   : in  std_logic;
 		  inState : in STATE;
 		  mode    : in AES_MODE;
-		  outState : out STATE
+		  outState : out STATE;
+		  s_mixColumns : out std_logic
 			);
 end mixColumns;
 
@@ -36,6 +37,11 @@ architecture Behavioral of mixColumns is
 	signal mult_e : STATE;
 	signal mixCol : STATE;
 	signal invMixCol : STATE;
+	
+	signal toggle : STATE;
+	signal s : STATE;
+	signal tmp : std_logic := '0';
+	
 
 -- All possible multiplications are performed on the incoming state
 -- The multiplications are peiced together at the end for proper outState
@@ -71,6 +77,16 @@ begin
 	end generate;
 	
 	-- Select encrypt or decrypt
-	outState <= mixCol when (mode = ENCRYPTION) else invMixcol;
-		
+
+	s <= mixCol when (mode = ENCRYPTION) else invMixcol;
+	outState <= s;
+	
+	signal_toggle : process (s) is
+    begin
+    if (toggle /= s) then
+      s_mixColumns <= not tmp;
+	  tmp <= not tmp;
+    end if;
+    toggle <= s;
+    end process signal_toggle;		
 end Behavioral;
