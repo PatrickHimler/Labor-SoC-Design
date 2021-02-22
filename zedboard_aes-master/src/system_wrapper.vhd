@@ -43,7 +43,8 @@ entity system_wrapper is
     btns_5bits_tri_i : in STD_LOGIC_VECTOR ( 4 downto 0 );
     leds_8bits_tri_o : out STD_LOGIC_VECTOR ( 7 downto 0 );
     serial_tx_tri_o : out STD_LOGIC;
-    sws_8bits_tri_i : in STD_LOGIC_VECTOR ( 7 downto 0 )
+    sws_8bits_tri_i : in STD_LOGIC_VECTOR ( 7 downto 0 );
+	test_inp_tri_i : in STD_LOGIC_VECTOR (4 downto 0 )
   );
 end system_wrapper;
 
@@ -80,7 +81,8 @@ architecture STRUCTURE of system_wrapper is
     FIXED_IO_ps_srstb : inout STD_LOGIC;
     FIXED_IO_ps_clk : inout STD_LOGIC;
     FIXED_IO_ps_porb : inout STD_LOGIC;
-    serial_tx_tri_o : out STD_LOGIC
+    serial_tx_tri_o : out STD_LOGIC;
+	test_inp_tri_i : in STD_LOGIC_VECTOR (4 downto 0 )
   );
   end component system;
 begin
@@ -116,6 +118,7 @@ system_i: component system
       btns_5bits_tri_i(4 downto 0) => btns_5bits_tri_i(4 downto 0),
       leds_8bits_tri_o(7 downto 0) => leds_8bits_tri_o(7 downto 0),
       serial_tx_tri_o => serial_tx_tri_o,
-      sws_8bits_tri_i(7 downto 0) => sws_8bits_tri_i(7 downto 0)
+      sws_8bits_tri_i(7 downto 0) => sws_8bits_tri_i(7 downto 0),
+	  test_inp_tri_i => test_inp_tri_i
     );
 end STRUCTURE;

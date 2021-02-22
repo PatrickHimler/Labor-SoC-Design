@@ -59,6 +59,22 @@
         </spirit:portMap>
       </spirit:portMaps>
     </spirit:busInterface>
+    <spirit:busInterface>
+      <spirit:name>ev_in</spirit:name>
+      <spirit:busType spirit:vendor="xilinx.com" spirit:library="interface" spirit:name="gpio" spirit:version="1.0"/>
+      <spirit:abstractionType spirit:vendor="xilinx.com" spirit:library="interface" spirit:name="gpio_rtl" spirit:version="1.0"/>
+      <spirit:master/>
+      <spirit:portMaps>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>TRI_I</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>ev_in</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+      </spirit:portMaps>
+    </spirit:busInterface>
   </spirit:busInterfaces>
   <spirit:model>
     <spirit:views>
@@ -650,7 +666,7 @@
       <xilinx:displayName>pwr_mon_v1_0</xilinx:displayName>
       <xilinx:definitionSource>package_project</xilinx:definitionSource>
       <xilinx:coreRevision>1</xilinx:coreRevision>
-      <xilinx:coreCreationDateTime>2021-02-22T12:52:29Z</xilinx:coreCreationDateTime>
+      <xilinx:coreCreationDateTime>2021-02-22T18:29:26Z</xilinx:coreCreationDateTime>
       <xilinx:tags>
         <xilinx:tag xilinx:name="ui.data.coregen.dd@36f56aac_ARCHIVE_LOCATION">f:/Dropbox/04_TU/02_SoC_Labor/Labor-SoC-Design/zedboard_aes-master/ip_repo/pwr_mon_1.0</xilinx:tag>
         <xilinx:tag xilinx:name="ui.data.coregen.dd@2942590_ARCHIVE_LOCATION">f:/Dropbox/04_TU/02_SoC_Labor/Labor-SoC-Design/zedboard_aes-master/ip_repo/pwr_mon_1.0</xilinx:tag>
@@ -668,11 +684,17 @@
         <xilinx:tag xilinx:name="ui.data.coregen.dd@368865e4_ARCHIVE_LOCATION">f:/Dropbox/04_TU/02_SoC_Labor/Labor-SoC-Design/zedboard_aes-master/ip_repo/pwr_mon_1.0</xilinx:tag>
         <xilinx:tag xilinx:name="ui.data.coregen.dd@540c2473_ARCHIVE_LOCATION">f:/Dropbox/04_TU/02_SoC_Labor/Labor-SoC-Design/zedboard_aes-master/ip_repo/pwr_mon_1.0</xilinx:tag>
         <xilinx:tag xilinx:name="ui.data.coregen.dd@79394b61_ARCHIVE_LOCATION">f:/Dropbox/04_TU/02_SoC_Labor/Labor-SoC-Design/zedboard_aes-master/ip_repo/pwr_mon_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6d955f21_ARCHIVE_LOCATION">f:/Dropbox/04_TU/02_SoC_Labor/Labor-SoC-Design/zedboard_aes-master/ip_repo/pwr_mon_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7577a69f_ARCHIVE_LOCATION">f:/Dropbox/04_TU/02_SoC_Labor/Labor-SoC-Design/zedboard_aes-master/ip_repo/pwr_mon_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6da8b010_ARCHIVE_LOCATION">f:/Dropbox/04_TU/02_SoC_Labor/Labor-SoC-Design/zedboard_aes-master/ip_repo/pwr_mon_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1d3dc903_ARCHIVE_LOCATION">f:/Dropbox/04_TU/02_SoC_Labor/Labor-SoC-Design/zedboard_aes-master/ip_repo/pwr_mon_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@45c49b6e_ARCHIVE_LOCATION">f:/Dropbox/04_TU/02_SoC_Labor/Labor-SoC-Design/zedboard_aes-master/ip_repo/pwr_mon_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2daa4037_ARCHIVE_LOCATION">f:/Dropbox/04_TU/02_SoC_Labor/Labor-SoC-Design/zedboard_aes-master/ip_repo/pwr_mon_1.0</xilinx:tag>
       </xilinx:tags>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
       <xilinx:xilinxVersion>2020.1</xilinx:xilinxVersion>
-      <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="68fcd76c"/>
+      <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="2ab64685"/>
       <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="8528a3a8"/>
       <xilinx:checksum xilinx:scope="ports" xilinx:value="4ea484a1"/>
       <xilinx:checksum xilinx:scope="hdlParameters" xilinx:value="5d068aa0"/>
