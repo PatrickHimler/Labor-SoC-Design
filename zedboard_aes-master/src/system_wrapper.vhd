@@ -1,8 +1,8 @@
---Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
+--Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------
---Tool Version: Vivado v.2017.3 (win64) Build 2018833 Wed Oct  4 19:58:22 MDT 2017
---Date        : Tue Apr  3 13:24:42 2018
---Host        : ensc-pit-49 running 64-bit major release  (build 9200)
+--Tool Version: Vivado v.2020.1 (win64) Build 2902540 Wed May 27 19:54:49 MDT 2020
+--Date        : Mon Feb 22 14:51:42 2021
+--Host        : Lukas-Gaming running 64-bit major release  (build 9200)
 --Command     : generate_target system_wrapper.bd
 --Design      : system_wrapper
 --Purpose     : IP block netlist
@@ -42,6 +42,7 @@ entity system_wrapper is
     VDD : out STD_LOGIC;
     btns_5bits_tri_i : in STD_LOGIC_VECTOR ( 4 downto 0 );
     leds_8bits_tri_o : out STD_LOGIC_VECTOR ( 7 downto 0 );
+    serial_tx_tri_o : out STD_LOGIC;
     sws_8bits_tri_i : in STD_LOGIC_VECTOR ( 7 downto 0 )
   );
 end system_wrapper;
@@ -49,6 +50,14 @@ end system_wrapper;
 architecture STRUCTURE of system_wrapper is
   component system is
   port (
+    DC : out STD_LOGIC;
+    RES : out STD_LOGIC;
+    SCLK : out STD_LOGIC;
+    SDIN : out STD_LOGIC;
+    VBAT : out STD_LOGIC;
+    VDD : out STD_LOGIC;
+    leds_8bits_tri_o : out STD_LOGIC_VECTOR ( 7 downto 0 );
+    sws_8bits_tri_i : in STD_LOGIC_VECTOR ( 7 downto 0 );
     DDR_cas_n : inout STD_LOGIC;
     DDR_cke : inout STD_LOGIC;
     DDR_ck_n : inout STD_LOGIC;
@@ -64,21 +73,14 @@ architecture STRUCTURE of system_wrapper is
     DDR_dq : inout STD_LOGIC_VECTOR ( 31 downto 0 );
     DDR_dqs_n : inout STD_LOGIC_VECTOR ( 3 downto 0 );
     DDR_dqs_p : inout STD_LOGIC_VECTOR ( 3 downto 0 );
+    btns_5bits_tri_i : in STD_LOGIC_VECTOR ( 4 downto 0 );
     FIXED_IO_mio : inout STD_LOGIC_VECTOR ( 53 downto 0 );
     FIXED_IO_ddr_vrn : inout STD_LOGIC;
     FIXED_IO_ddr_vrp : inout STD_LOGIC;
     FIXED_IO_ps_srstb : inout STD_LOGIC;
     FIXED_IO_ps_clk : inout STD_LOGIC;
     FIXED_IO_ps_porb : inout STD_LOGIC;
-    btns_5bits_tri_i : in STD_LOGIC_VECTOR ( 4 downto 0 );
-    leds_8bits_tri_o : out STD_LOGIC_VECTOR ( 7 downto 0 );
-    sws_8bits_tri_i : in STD_LOGIC_VECTOR ( 7 downto 0 );
-    DC : out STD_LOGIC;
-    RES : out STD_LOGIC;
-    SCLK : out STD_LOGIC;
-    SDIN : out STD_LOGIC;
-    VBAT : out STD_LOGIC;
-    VDD : out STD_LOGIC
+    serial_tx_tri_o : out STD_LOGIC
   );
   end component system;
 begin
@@ -113,6 +115,7 @@ system_i: component system
       VDD => VDD,
       btns_5bits_tri_i(4 downto 0) => btns_5bits_tri_i(4 downto 0),
       leds_8bits_tri_o(7 downto 0) => leds_8bits_tri_o(7 downto 0),
+      serial_tx_tri_o => serial_tx_tri_o,
       sws_8bits_tri_i(7 downto 0) => sws_8bits_tri_i(7 downto 0)
     );
 end STRUCTURE;

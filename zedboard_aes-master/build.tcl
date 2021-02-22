@@ -275,6 +275,7 @@ proc cr_bd_system { parentCell } {
   set btns_5bits [ create_bd_intf_port -mode Master -vlnv xilinx.com:interface:gpio_rtl:1.0 btns_5bits ]
   set leds_8bits [ create_bd_intf_port -mode Master -vlnv xilinx.com:interface:gpio_rtl:1.0 leds_8bits ]
   set sws_8bits [ create_bd_intf_port -mode Master -vlnv xilinx.com:interface:gpio_rtl:1.0 sws_8bits ]
+  set serial_tx [ create_bd_intf_port -mode Master -vlnv xilinx.com:interface:gpio_rtl:1.0 serial_tx ]
 
   # Create ports
   set DC [ create_bd_port -dir O DC ]
@@ -283,7 +284,6 @@ proc cr_bd_system { parentCell } {
   set SDIN [ create_bd_port -dir O SDIN ]
   set VBAT [ create_bd_port -dir O VBAT ]
   set VDD [ create_bd_port -dir O VDD ]
-  set JA1 [ create_bd_port -dir O JA1 ]
 
   # Create instance: AES_PROCESS_0, and set properties
   set AES_PROCESS_0 [ create_bd_cell -type ip -vlnv sfu.ca:user:AES_PROCESS:1.0 AES_PROCESS_0 ]
@@ -760,7 +760,8 @@ proc cr_bd_system { parentCell } {
   connect_bd_intf_net -intf_net ps7_0_axi_periph_M02_AXI [get_bd_intf_pins AMA142_OLED_AXI/S00_AXI] [get_bd_intf_pins ps7_0_axi_periph/M02_AXI]
   connect_bd_intf_net -intf_net ps7_0_axi_periph_M03_AXI [get_bd_intf_pins BTN_GPIO_AXI/S_AXI] [get_bd_intf_pins ps7_0_axi_periph/M03_AXI]
   connect_bd_intf_net -intf_net ps7_0_axi_periph_M04_AXI [get_bd_intf_pins AES_PROCESS_0/S00_AXI] [get_bd_intf_pins ps7_0_axi_periph/M04_AXI]
-
+  connect_bd_intf_net [get_bd_intf_ports serial_tx] [get_bd_intf_pins pwr_mon_0/serial_tx]
+  
   # Create port connections
   connect_bd_net -net AMA142_OLED_AXI_DC [get_bd_ports DC] [get_bd_pins AMA142_OLED_AXI/DC]
   connect_bd_net -net AMA142_OLED_AXI_RES [get_bd_ports RES] [get_bd_pins AMA142_OLED_AXI/RES]
@@ -772,7 +773,6 @@ proc cr_bd_system { parentCell } {
   connect_bd_net -net processing_system7_0_FCLK_RESET0_N [get_bd_pins processing_system7_0/FCLK_RESET0_N] [get_bd_pins rst_ps7_0_100M/ext_reset_in]
   connect_bd_net -net rst_ps7_0_100M_interconnect_aresetn [get_bd_pins ps7_0_axi_periph/ARESETN] [get_bd_pins rst_ps7_0_100M/interconnect_aresetn]
   connect_bd_net -net rst_ps7_0_100M_peripheral_aresetn [get_bd_pins AES_PROCESS_0/AXIS_ARESETN] [get_bd_pins AES_PROCESS_0/s00_axi_aresetn] [get_bd_pins pwr_mon_0/nrst] [get_bd_pins AMA142_OLED_AXI/s00_axi_aresetn] [get_bd_pins BTN_GPIO_AXI/s_axi_aresetn] [get_bd_pins SW_LED_GPIO_AXI/s_axi_aresetn] [get_bd_pins axi_dma_0/axi_resetn] [get_bd_pins axi_smc/aresetn] [get_bd_pins ps7_0_axi_periph/M00_ARESETN] [get_bd_pins ps7_0_axi_periph/M01_ARESETN] [get_bd_pins ps7_0_axi_periph/M02_ARESETN] [get_bd_pins ps7_0_axi_periph/M03_ARESETN] [get_bd_pins ps7_0_axi_periph/M04_ARESETN] [get_bd_pins ps7_0_axi_periph/S00_ARESETN] [get_bd_pins rst_ps7_0_100M/peripheral_aresetn]
-  connect_bd_net [get_bd_ports JA1] [get_bd_pins pwr_mon_0/serial_tx]
   connect_bd_net [get_bd_pins AES_PROCESS_0/s_pwr_v] [get_bd_pins pwr_mon_0/ev_in]
   
   # Create address segments
