@@ -42,7 +42,7 @@ if { [info exists ::origin_dir_loc] } {
 }
 
 # Set the project name
-set project_name "zedboard_aes"
+set project_name "power_monitor_aes"
 
 # Use project name variable, if specified in the tcl shell
 if { [info exists ::user_project_name] } {
