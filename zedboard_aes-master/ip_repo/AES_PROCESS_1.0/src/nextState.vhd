@@ -27,11 +27,11 @@ architecture Behavioral of nextState is
 
 	--signal s_mixColumns_v : std_logic;
 	--signal s_addRoundKey_v : std_logic;
-	signal s_mixColumns_v : std_logic_vector (1 downto 0);
-	signal s_addRoundKey_v : std_logic_vector (1 downto 0);
+	signal s_mixColumns_v : std_logic_vector (1 downto 0) := "00";
+	signal s_addRoundKey_v : std_logic_vector (1 downto 0)  := "00";
 
-	signal toggle_mix : std_logic_vector(1 downto 0);
-	signal toggle_add : std_logic_vector(1 downto 0);
+	signal toggle_mix : std_logic_vector(1 downto 0) := "00";
+	signal toggle_add : std_logic_vector(1 downto 0) := "00";
 	
 	signal tmp1 : std_logic := '0';
 	signal tmp2 : std_logic := '0';
@@ -51,22 +51,26 @@ begin
 		outState <= temp_encrypt (3) when (mode = ENCRYPTION) else temp_decrypt (3);
 
 
-signal_toggle_mix : process (s_mixColumns_v) is
+signal_toggle_mix : process (clk) is
     begin
-    if (toggle_mix /= s_mixColumns_v) then
-      s_mixColumns <= not tmp1;
-	  tmp1 <= not tmp1;
+    if (clk'event and clk = '1') then
+        if (toggle_mix /= s_mixColumns_v) then
+          s_mixColumns <= not tmp1;
+          tmp1 <= not tmp1;
+        end if;
+        toggle_mix <= s_mixColumns_v;
     end if;
-    toggle_mix <= s_mixColumns_v;
     end process signal_toggle_mix;
 
-signal_toggle_add : process (s_addRoundKey_v) is
+signal_toggle_add : process (clk) is
     begin
-    if (toggle_add /= s_addRoundKey_v) then
-	  s_addRoundKey <= not tmp2;
-	  tmp2 <= not tmp2;
+    if (clk'event and clk = '1') then
+        if (toggle_add /= s_addRoundKey_v) then
+          s_addRoundKey <= not tmp2;
+          tmp2 <= not tmp2;
+        end if;
+        toggle_add <= s_addRoundKey_v;
     end if;
-    toggle_add <= s_addRoundKey_v;
     end process signal_toggle_add;
 		--s_mixColumns <= s_mixColumns_v;
 		--s_addRoundKey <= s_addRoundKey_v;

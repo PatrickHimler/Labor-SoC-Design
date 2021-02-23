@@ -18,11 +18,12 @@ end addRoundKey;
 -- Adds the round key to state by an XOR function
 architecture behavioral of addRoundKey is
 
-signal toggle : STATE;
-signal s : STATE;
+signal toggle : STATE := ((X"00", X"00", X"00", X"00"), (X"00", X"00", X"00", X"00"), (X"00", X"00", X"00", X"00"), (X"00", X"00", X"00", X"00"));
+signal s : STATE := ((X"00", X"00", X"00", X"00"), (X"00", X"00", X"00", X"00"), (X"00", X"00", X"00", X"00"), (X"00", X"00", X"00", X"00"));
 signal tmp : std_logic := '0';
 
 begin
+
     loopWords: for i in 0 to (word_size-1) generate
         loopBytes: for j in 0 to (word_size-1) generate
             s(i)(j) <= inState(i)(j) xor inKey(i)(j);
@@ -31,12 +32,14 @@ begin
 	
 	outState <= s;
 
-signal_toggle : process (s) is
+signal_toggle : process (clk) is
     begin
-    if (toggle /= s) then
-      s_addRoundKey <= not tmp;
-	  tmp <= not tmp;
+    if (clk'event and clk = '1') then
+        if (toggle /= s) then
+          s_addRoundKey <= not tmp;
+          tmp <= not tmp;
+        end if;
+        toggle <= s;
     end if;
-    toggle <= s;
     end process signal_toggle;
 end behavioral;

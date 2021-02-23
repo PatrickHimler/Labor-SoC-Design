@@ -23,9 +23,9 @@ architecture behavioral of keyExpansion is
     signal tmp : WORD_ARRAY (0 to word_size*num_rounds-1); -- 44 (4 words (32-bits) for 11 rounds)
 	signal outRoundKey_encrypt : STATE_ARRAY (0 to num_rounds-1);
 	signal outRoundKey_decrypt : STATE_ARRAY (0 to num_rounds-1);
-    signal s_xorWord_v : std_logic_vector (30-1 downto 0);
+    signal s_xorWord_v : std_logic_vector (30-1 downto 0) := (others => '0');
     --signal s_sBox_e_v : std_logic_vector (10-1 downto 0);
-    signal toggle : std_logic_vector (30-1 downto 0);
+    signal toggle : std_logic_vector (30-1 downto 0) := (others => '0');
 	
 	signal tmp1 : std_logic := '0';
 begin
@@ -98,14 +98,17 @@ begin
 	-- Mux
 	outRoundKey <= outRoundKey_encrypt when (inMode = ENCRYPTION) else outRoundKey_decrypt;
 
-    signal_toggle : process (s_xorWord_v) is
-    begin
-    if (toggle /= s_xorWord_v) then
-      s_xorWord <= not tmp1;
-	  tmp1 <= not tmp1;
-    end if;
-    toggle <= s_xorWord_v;
-    end process signal_toggle;
+    s_xorWord <= s_xorWord_v(0); -- for testing
+--    signal_toggle : process (clk) is
+--    begin
+--    if (clk'event and clk = '1') then
+--        if (toggle /= s_xorWord_v) then
+--          s_xorWord <= not tmp1;
+--          tmp1 <= not tmp1;
+--        end if;
+--        toggle <= s_xorWord_v;
+--    end if;
+--    end process signal_toggle;
     --s_xorWord <= s_xorWord_v(0);
     --s_sBox_e <= s_sBox_e_v(0);
 

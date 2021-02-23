@@ -23,8 +23,8 @@ end lastState;
 architecture Behavioral of lastState is
 	signal temp_encrypt : STATE_ARRAY (0 to 2);
 	signal temp_decrypt : STATE_ARRAY (0 to 2);
-	signal s_addRoundKey_v : std_logic_vector (1 downto 0);
-	signal toggle_add : std_logic_vector(1 downto 0);
+	signal s_addRoundKey_v : std_logic_vector (1 downto 0) := "00";
+	signal toggle_add : std_logic_vector(1 downto 0) := "00";
 	
 	signal tmp : std_logic := '0';
 
@@ -40,13 +40,15 @@ begin
 		
 		outState <= temp_encrypt (2) when (mode = ENCRYPTION) else temp_decrypt (2);
 
-signal_toggle_add : process (s_addRoundKey_v) is
+signal_toggle_add : process (clk) is
     begin
-    if (toggle_add /= s_addRoundKey_v) then
-	  s_addRoundKey <= not tmp;
-	  tmp <= not tmp;
+    if (clk'event and clk = '1') then
+        if (toggle_add /= s_addRoundKey_v) then
+          s_addRoundKey <= not tmp;
+          tmp <= not tmp;
+        end if;
+        toggle_add <= s_addRoundKey_v;
     end if;
-    toggle_add <= s_addRoundKey_v;
     end process signal_toggle_add;
  
 end Behavioral;

@@ -78,13 +78,10 @@ begin
 		if reset = '1' then
 			round <= round0;
 			done <= '0';
-			s_addRoundKey <= '0';
 		
 		elsif clk'event and clk = '1' then
-		    s_addRoundKey <= '0';
 			case round is
 				when round0  => round <= round1;
-				                     s_addRoundKey <= '1';
 									 curr_key <= key_schedule (1);
 									 curr_state <= first_state;
 									 
@@ -142,14 +139,16 @@ begin
 	end process;
 
 
---signal_toggle_add : process (s_addRoundKey_v) is
---    begin
---    if (toggle_add /= s_addRoundKey_v) then
---      s_addRoundKey <= not tmp;
---	  tmp <= not tmp;
---    end if;
---    toggle_add <= s_addRoundKey_v;
---end process signal_toggle_add;
+signal_toggle_add : process (clk) is
+    begin
+    if (clk'event and clk = '1') then
+        if (toggle_add /= s_addRoundKey_v) then
+          s_addRoundKey <= not tmp;
+          tmp <= not tmp;
+        end if;
+        toggle_add <= s_addRoundKey_v;
+    end if;
+end process signal_toggle_add;
 
 	--s_xorWord <= s_xorWord_v;
 	--s_mixColumns <= s_mixColumns_v;
