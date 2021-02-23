@@ -26,3 +26,21 @@ CSV-data is then picked up by the Excel-tool which provides a diagram of the mea
 ## Block diagram
 
 ![Blockdiagram](blockdiagramm.png)
+
+# How To
+
+To compile the project please check the AES project and follow the README there.
+
+In order to get the design on the board a boot.bin file is needed to be placed on a SD card -> See AES project.
+Unfortunately we did not manage to get the boot.bin out of Vitis (which replaced Xilinx-SDK in a newer version).
+
+The workaround we found:
+
+* Copy boot.bin from the AES project on SD card and insert in zedboard
+* Turn on zedboard and connect to PC
+* Zedboard should boot the AES application
+* Generate bitstream in Vivado (this might take several minutes)
+* Open hardware manager in Vivado and program bitstream to FPGA
+* AES application should boot but with the new bitstream in the FPGA
+
+Uart output is mapped to JA1.
